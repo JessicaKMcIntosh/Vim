@@ -19,6 +19,10 @@ highlight Comment       guifg=LightBlue                     gui=none
 highlight Constant      guifg=LightRed                      gui=none
 highlight Conditional   guifg=Yellow                        gui=none
 highlight Cursor        guifg=Black         guibg=Green
+highlight DiffAdd                           guibg=DarkBlue
+highlight DiffChange                        guibg=DarkMagenta
+highlight DiffDelete    guifg=DarkGrey      guibg=DarkCyan
+highlight DiffText      guifg=LightGrey     guibg=Red
 highlight Error         guifg=White         guibg=Red       gui=bold
 highlight Ignore        guifg=White                         gui=bold
 highlight Identifier    guifg=Cyan                          gui=none
@@ -39,6 +43,10 @@ highlight Comment       ctermfg=Blue
 highlight Constant      ctermfg=Red
 highlight Conditional   ctermfg=Yellow
 highlight Cursor        ctermfg=Black       ctermbg=Green
+highlight DiffAdd                           ctermbg=DarkBlue
+highlight DiffChange                        ctermbg=DarkMagenta
+highlight DiffDelete    ctermfg=DarkGrey    ctermbg=DarkCyan
+highlight DiffText      ctermfg=LightGrey   ctermbg=Red
 highlight Error         ctermfg=White       ctermbg=Red     cterm=bold
 highlight Ignore        ctermfg=White                       cterm=bold
 highlight Identifier    ctermfg=Cyan                        cterm=none
