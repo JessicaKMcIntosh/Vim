@@ -1,7 +1,7 @@
 " Vim syntax file for Tcl language
-" Language:	Tcl (NO Tk)
-" Maintained:	Lorance Stinson <Lorance Stinson AT gmail DOT com>
-" Last Change:	Sun, Aug 21, 2011
+" Language:     Tcl (NO Tk)
+" Maintained:   Lorance Stinson <Lorance Stinson AT gmail DOT com>
+" Last Change:  Mon, Aug 22, 2011
 " Filenames:    *.tcl
 "
 " Based on the Tcl.vim script by SM Smithfield.
@@ -15,9 +15,39 @@
 
 " -------------------------
 if version < 600
-  syntax clear
+    syntax clear
 elseif exists("b:current_syntax")
-  finish
+    finish
+endif
+
+" unlet perl_include_pod " Disable Perl POD highlighting.
+let perl_include_pod " Enable Perl POD highlighting.
+
+" Include Perl POD as embedded documentation.
+" POD documentation can be embedded inside two containers:
+"   if {0} {}   - Acts like a comment.
+"   pod_doc {}  - A dummy procedure that does nothing.
+" POD must be properly formatted per the POD specification.
+"
+"#  POD Embedding procedure.
+"#  Does nothing, allows POD to be easily embedded.
+"proc pod_doc {args} {
+"    return
+"}
+"
+"# Example of embedded POD documentation.
+"pod_doc {
+"=head1 POD
+"
+"Sample POD documentation embedded in Tcl.
+"
+"=cut
+"}
+if exists("perl_include_pod")
+    if exists("b:current_syntax")
+        unlet b:current_syntax
+    endif
+    syn include @PerlPod syntax/pod.vim
 endif
 
 " Define this early for functions that do it all.
@@ -99,13 +129,15 @@ syn region  tclStart        start="\%^\s*#!/bin/sh"  end="^\s*exec.*$"
 syn match   tclBraceError   "}"
 syn match   tclBracketError "]"
 
+" Embedded Perl POD documentation.
+syn region perlPODProc      contained start=+^pod_doc\s*{$+ skip=+$\|\(\\\)\@<!\\}+ end=+^\s*}$+ contains=@PerlPod,@Spell,tclTodo
 
 " -------------------------
 " Clusters:
 " -------------------------
 syn cluster tclKeywords     contains=tclPrimary,tclPredicates,tclKeyword,tclConditional,tclRepeat,tclLabel,tclMagicName
 " ------------------
-syn cluster tclBits         contains=tclBraces,tclBrackets,tclComment,tclExpand,@tclLContinue,tclNumber,tclQuotes,tclSpecial,tclSemiColon
+syn cluster tclBits         contains=PerlPODProc,tclBraces,tclBrackets,tclComment,tclExpand,@tclLContinue,tclNumber,tclQuotes,tclSpecial,tclSemiColon
 syn cluster tclStuff        contains=@tclBits,tclVariable,tclREClassGroup
 syn cluster tclOpts         contains=tclEndOpts,@tclStuff
 syn cluster tclWord0Clstr   contains=@tclStuff
@@ -152,7 +184,7 @@ syn keyword tclMaths        contained ne eq in ni
 syn match   tclMaths        contained "[()^%~<>!=+*\-|&?:/]"
 
 " IF - permits use of if{0} {} commenting idiom
-syn region  tclIfComment    contained extend keepend matchgroup=Comment start=+\(\\\)\@<!{+  skip=+$\|\\}+ end=+}+ contains=tclIfComment,tclTodo,@Spell
+syn region  tclIfComment    contained extend keepend matchgroup=Comment start=+\(\\\)\@<!{+  skip=+$\|\\}+ end=+}+ contains=@PerlPod,tclIfComment,tclTodo,@Spell
 syn match   tclIfCommentStart contained extend  "\s*\(0\|{0}\)" skipwhite nextgroup=tclIfComment
 
 " PROC - proc name hilite AND folding
@@ -405,8 +437,6 @@ HiLink tclBracketError   Error
 HiLink tclQuotes         String
 HiLink tclNumber         Number
 HiLink tclComment        Comment
-HiLink tclComment2       Comment
-HiLink tclCommentBraces  Comment
 HiLink tclIfComment      Comment
 HiLink tclIfCommentStart Comment
 HiLink tclSpecial        Special
@@ -434,8 +464,6 @@ HiLink tclMagicName      tclKeyword
 " -------------------------
 " Highlights: - Extended
 " -------------------------
-HiLink tclArrayCmds                     tclSubcommand
-HiLink tclArrayCmdsNamesOpts            tclOption
 HiLink tclChanCmds                      tclSubcommand
 HiLink tclChanCmdsConfigureOpts         tclOption
 HiLink tclChanCmdsCopyOpts              tclOption
@@ -458,7 +486,6 @@ HiLink tclInterpSUBInvokehiddenOpts     tclOption
 HiLink tclInterpSUBLimitOpts            tclOption
 HiLink tclPackageCmds                   tclSubcommand
 HiLink tclPackageCmdsPresentOpts        tclOption
-HiLink tclRegexpOpts                    tclOption
 HiLink tclStringCmds                    tclSubcommand
 HiLink tclStringCmdsCompareOpts         tclOption
 HiLink tclStringCmdsIsClass             tclEnsemble
@@ -488,6 +515,9 @@ HiLink tclBracesArgs                    Type
 HiLink tclBracesExpression              Special
 HiLink tclEndOpts                       Type
 HiLink tclKeywordPred                   tclKeyword
+
+" Perl POD Documentation.
+HiLink perlPODProc                      Comment
 
 " -------------------------
 " Cleanup:
