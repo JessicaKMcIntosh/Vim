@@ -51,7 +51,7 @@ highlight Error         ctermfg=White       ctermbg=Red     cterm=bold
 highlight Ignore        ctermfg=White                       cterm=bold
 highlight Identifier    ctermfg=Cyan                        cterm=none
 highlight Keyword       ctermfg=DarkMagenta
-highlight Normal        ctermfg=LightGrey   ctermbg=Black
+highlight Normal        ctermfg=LightGrey
 highlight Operator      ctermfg=Brown
 highlight PreProc       ctermfg=Magenta
 highlight Search        ctermfg=Black       ctermbg=Yellow
