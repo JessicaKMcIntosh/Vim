@@ -119,6 +119,7 @@ syn region  tclBraces       contained extend keepend matchgroup=tclBracesHighlig
 syn region  tclFoldBraces   contained extend keepend fold matchgroup=tclBracesHighlight start=+\(\\\)\@<!{+ end=+}+ skip=+$\|\(\\\)\@<!\\}+ contains=@tclCommandClstr
 syn match   tclSemiColon    contained ";\s*" skipwhite nextgroup=@tclCommandClstr
 syn region  tclComment      contained extend keepend start=+^\s*\#+ms=e-1 start=+\([;{]\s*\)\@<=\#+ end="\\\s\+$\|$" skip=+\\$+ contains=tclTodo,@tclLContinue,@Spell
+syn match   tclNamespace    "::\([^: ]\+::\)*"
 syn match   tclEndOpts      contained "--"
 
 syn region  tclCommand      start=+[^;]\&.+ skip=+\\$+ end=+;\|$+ contains=@tclCommandClstr
@@ -137,7 +138,7 @@ syn region perlPODProc      contained start=+^pod_doc\s*{$+ skip=+$\|\(\\\)\@<!\
 " -------------------------
 syn cluster tclKeywords     contains=tclPrimary,tclPredicates,tclKeyword,tclConditional,tclRepeat,tclLabel,tclMagicName
 " ------------------
-syn cluster tclBits         contains=PerlPODProc,tclBraces,tclBrackets,tclComment,tclExpand,@tclLContinue,tclNumber,tclQuotes,tclSpecial,tclSemiColon
+syn cluster tclBits         contains=PerlPODProc,tclBraces,tclBrackets,tclComment,tclExpand,@tclLContinue,tclNumber,tclQuotes,tclSpecial,tclSemiColon,tclNamespace
 syn cluster tclStuff        contains=@tclBits,tclVariable,tclREClassGroup
 syn cluster tclOpts         contains=tclEndOpts,@tclStuff
 syn cluster tclWord0Clstr   contains=@tclStuff
@@ -188,12 +189,12 @@ syn region  tclIfComment    contained extend keepend matchgroup=Comment start=+\
 syn match   tclIfCommentStart contained extend  "\s*\(0\|{0}\)" skipwhite nextgroup=tclIfComment
 
 " PROC - proc name hilite AND folding
-syn keyword tclPrimary      contained proc skipwhite nextgroup=tclProcName
+syn keyword tclPrimary      contained proc _proc skipwhite nextgroup=tclProcName
 " def-script pattern
 syn match   tclProcDef      contained "\S\+" skipwhite nextgroup=tclFoldBraces
 " type-name-args-script pattern
 syn match   tclProcType     contained "\S\+" skipwhite nextgroup=tclProcName
-syn match   tclProcName     contained "\S\+" skipwhite nextgroup=tclProcArgs
+syn match   tclProcName     contained "\S\+" skipwhite contains=tclNamespace nextgroup=tclProcArgs
 syn region  tclProcArgs     contained extend keepend excludenl matchgroup=tclBracesArgs start=+\(\\\)\@<!{+  skip=+$\|\\}+ end=+}+ contains=tclProcArgs skipwhite nextgroup=tclFoldBraces
 
 
@@ -459,6 +460,7 @@ HiLink tclProcName       Bold
 HiLink tclProcDef        Bold
 HiLink tclProcType       Bold
 HiLink tclMagicName      tclKeyword
+HiLink tclNamespace      tclSpecial
 
 
 " -------------------------
