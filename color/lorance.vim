@@ -19,7 +19,7 @@ highlight Comment       guifg=LightBlue                     gui=none
 highlight Constant      guifg=LightRed                      gui=none
 highlight Conditional   guifg=Yellow                        gui=none
 highlight Cursor        guifg=Black         guibg=Green
-highlight DiffAdd                           guibg=DarkBlue
+highlight DiffAdd       guifg=LightGrey     guibg=DarkBlue
 highlight DiffChange                        guibg=DarkMagenta
 highlight DiffDelete    guifg=DarkGrey      guibg=DarkCyan
 highlight DiffText      guifg=LightGrey     guibg=Red
@@ -34,6 +34,7 @@ highlight Search        guifg=Black         guibg=Yellow
 highlight Special       guifg=LightMagenta                  gui=none
 highlight Statement     guifg=Yellow                        gui=none
 highlight StatusLine    guifg=LightGrey     guibg=Black
+highlight StatusLineNC  guifg=LightRed      guibg=Black
 highlight Todo          guifg=Black         guibg=Yellow
 highlight Type          guifg=LightGreen                    gui=none
 highlight WarningMsg    guifg=Red                           gui=bold
@@ -43,7 +44,7 @@ highlight Comment       ctermfg=Blue
 highlight Constant      ctermfg=Red
 highlight Conditional   ctermfg=Yellow
 highlight Cursor        ctermfg=Black       ctermbg=Green
-highlight DiffAdd                           ctermbg=DarkBlue
+highlight DiffAdd       ctermfg=LightGrey   ctermbg=DarkBlue
 highlight DiffChange                        ctermbg=DarkMagenta
 highlight DiffDelete    ctermfg=DarkGrey    ctermbg=DarkCyan
 highlight DiffText      ctermfg=LightGrey   ctermbg=Red
@@ -58,6 +59,7 @@ highlight Search        ctermfg=Black       ctermbg=Yellow
 highlight Special       ctermfg=Magenta
 highlight Statement     ctermfg=Yellow
 highlight StatusLine    ctermfg=LightGrey   ctermbg=Black
+highlight StatusLineNC  ctermfg=LightRed    ctermbg=Black
 highlight Todo          ctermfg=Black       ctermbg=Yellow
 highlight Type          ctermfg=Green
 highlight WarningMsg    ctermfg=Red                         cterm=bold
