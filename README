@@ -15,3 +15,5 @@ Files:
                           highlighted word. Typing '\TD' will ask for a word to
                           lookup. If the word can not be found 'tcl' is loaded.
     tcldocs/            - Doc files for plugin/tcldocs.vim.
+                          To generate the doc files for your Tcl environment see
+                          the gen.sh script in the directory.
