@@ -45,7 +45,7 @@ if !hasmapto('<Plug>TclDocsAsk')
 endif
 
 " Plug mappings for the key mappings.
-nmap <silent> <unique> <script> <Plug>TclDocsNormal      :call <SID>TclDocs(expand("<cWORD>"))<CR>
+nmap <silent> <unique> <script> <Plug>TclDocsNormal      :call <SID>TclDocs(expand("<cword>"))<CR>
 vmap <silent> <unique> <script> <Plug>TclDocsVisual     y:call <SID>TclDocs('<c-r>"')<CR>
 nmap <silent> <unique> <script> <Plug>TclDocsAsk         :call <SID>TclDocs()<CR>
 
