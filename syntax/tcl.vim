@@ -129,6 +129,7 @@ syn region  tclStart        start="\%^\s*#!/bin/sh"  end="^\s*exec.*$"
 
 syn match   tclBraceError   "}"
 syn match   tclBracketError "]"
+syn match   tclIfError      "if [\[(]"
 
 " Embedded Perl POD documentation.
 syn region perlPODProc      contained start=+^pod_doc\s*{$+ skip=+$\|\(\\\)\@<!\\}+ end=+^\s*}$+ contains=@PerlPod,@Spell,tclTodo
@@ -435,6 +436,7 @@ HiLink tclLContinueOK    Special
 HiLink tclLContinueError Error
 HiLink tclBraceError     Error
 HiLink tclBracketError   Error
+HiLink tclIfError        Error
 HiLink tclQuotes         String
 HiLink tclNumber         Number
 HiLink tclComment        Comment
