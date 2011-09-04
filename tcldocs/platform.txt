@@ -1,4 +1,4 @@
-platform(n)		     Tcl Bundled Packages		   platform(n)
+platform(n)                  Tcl Bundled Packages                  platform(n)
 
 
 
@@ -22,15 +22,15 @@ DESCRIPTION
        Whilst Tcl provides the tcl_platform array for identifying the  current
        architecture (in particular, the platform and machine elements) this is
        not always sufficient. This is because (on Unix machines)  tcl_platform
-       reflects	 the  values  returned	by the uname command and these are not
-       standardized across platforms and architectures.	 In  addition,	on  at
+       reflects  the  values  returned  by the uname command and these are not
+       standardized across platforms and architectures.  In  addition,  on  at
        least  one  platform  (AIX)  the tcl_platform(machine) contains the CPU
        serial number.
 
        Consequently, individual applications need to manipulate the values  in
-       tcl_platform  (along  with  the	output of system specific utilities) -
+       tcl_platform  (along  with  the  output of system specific utilities) -
        which is both inconvenient for developers, and introduces the potential
-       for  inconsistencies in identifying architectures and in naming conven‐
+       for  inconsistencies in identifying architectures and in naming conven-
        tions.
 
        The platform package prevents such fragmentation - i.e., it establishes
@@ -40,28 +40,28 @@ DESCRIPTION
 
 COMMANDS
        platform::identify
-	      This  command  returns an identifier describing the platform the
-	      Tcl core is running on. The returned identifier has the  general
-	      format OS-CPU. The OS part of the identifier may contain details
-	      like kernel version, libc version, etc.,	and  this  information
-	      may  contain  dashes  as	well.	The  CPU part will not contain
-	      dashes, making the preceding dash the last dash in the result.
+              This  command  returns an identifier describing the platform the
+              Tcl core is running on. The returned identifier has the  general
+              format OS-CPU. The OS part of the identifier may contain details
+              like kernel version, libc version, etc.,  and  this  information
+              may  contain  dashes  as  well.   The  CPU part will not contain
+              dashes, making the preceding dash the last dash in the result.
 
        platform::generic
-	      This command returns  a  simplified  identifier  describing  the
-	      platform	the  Tcl  core	is  running  on.  In contrast to plat‐
-	      form::identify it leaves out details like kernel	version,  libc
-	      version, etc. The returned identifier has the general format OS-
-	      CPU.
+              This command returns  a  simplified  identifier  describing  the
+              platform  the  Tcl  core  is  running  on.  In contrast to plat-
+              form::identify it leaves out details like kernel  version,  libc
+              version, etc. The returned identifier has the general format OS-
+              CPU.
 
        platform::patterns  identifier
-	      This command takes an identifier as returned by  platform::iden‐
-	      tify  and	 returns  a  list of identifiers describing compatible
-	      architectures.
+              This command takes an identifier as returned by  platform::iden-
+              tify  and  returns  a  list of identifiers describing compatible
+              architectures.
 
 KEYWORDS
        operating system, cpu architecture, platform, architecture
 
 
 
-platform			     1.0.4			   platform(n)
+platform                             1.0.4                         platform(n)

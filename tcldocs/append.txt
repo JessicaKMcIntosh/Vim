@@ -1,4 +1,4 @@
-append(n)		     Tcl Built-In Commands		     append(n)
+append(n)                    Tcl Built-In Commands                   append(n)
 
 
 
@@ -13,21 +13,21 @@ _________________________________________________________________
 
 
 DESCRIPTION
-       Append all of the value arguments to the current value of variable var‐
-       Name.  If varName does not exist, it is given a value equal to the con‐
-       catenation  of  all the value arguments.	 The result of this command is
-       the new value stored in variable varName.   This	 command  provides  an
+       Append all of the value arguments to the current value of variable var-
+       Name.  If varName does not exist, it is given a value equal to the con-
+       catenation  of  all the value arguments.  The result of this command is
+       the new value stored in variable varName.   This  command  provides  an
        efficient  way  to build up long variables incrementally.  For example,
-       “append a $b” is much more efficient than “set a $a$b” if $a is long.
+       "append a $b" is much more efficient than "set a $a$b" if $a is long.
 
 EXAMPLE
        Building a string of comma-separated numbers piecemeal using a loop.
-	      set var 0
-	      for {set i 1} {$i<=10} {incr i} {
-		 append var "," $i
-	      }
-	      puts $var
-	      # Prints 0,1,2,3,4,5,6,7,8,9,10
+              set var 0
+              for {set i 1} {$i<=10} {incr i} {
+                 append var "," $i
+              }
+              puts $var
+              # Prints 0,1,2,3,4,5,6,7,8,9,10
 
 
 SEE ALSO
@@ -39,4 +39,4 @@ KEYWORDS
 
 
 
-Tcl								     append(n)
+Tcl                                                                  append(n)

@@ -1,4 +1,4 @@
-lreverse(n)		     Tcl Built-In Commands		   lreverse(n)
+lreverse(n)                  Tcl Built-In Commands                 lreverse(n)
 
 
 
@@ -16,10 +16,10 @@ DESCRIPTION
        input list, list, except with the elements in the reverse order.
 
 EXAMPLES
-	      lreverse {a a b c}
-		    → c b a a
-	      lreverse {a b {c d} e f}
-		    → f e {c d} b a
+              lreverse {a a b c}
+                    -> c b a a
+              lreverse {a b {c d} e f}
+                    -> f e {c d} b a
 
 SEE ALSO
        list(n), lsearch(n), lsort(n)
@@ -30,4 +30,4 @@ KEYWORDS
 
 
 
-Tcl				      8.5			   lreverse(n)
+Tcl                                   8.5                          lreverse(n)

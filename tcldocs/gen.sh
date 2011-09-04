@@ -12,4 +12,9 @@ do
     text_file="`echo $command | tr 'A-Z' 'a-z'`.txt"
     echo "$command => $text_file"
     man n $command | col -b > ${text_file}
+    # Alternate command to eliminate garbage chracters.
+    # This works for me on Cygwin...
+#    zcat /usr/share/man/mann/${command}.n.gz | \
+#        nroff -man -Tascii -c \
+#        | col -b -x > ${text_file}
 done

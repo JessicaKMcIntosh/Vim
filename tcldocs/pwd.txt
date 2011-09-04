@@ -1,4 +1,4 @@
-pwd(n)			     Tcl Built-In Commands			pwd(n)
+pwd(n)                       Tcl Built-In Commands                      pwd(n)
 
 
 
@@ -17,16 +17,16 @@ DESCRIPTION
 
 EXAMPLE
        Sometimes it is useful to change to a known directory when running some
-       external command using exec, but it is important to keep	 the  applica‐
+       external command using exec, but it is important to keep  the  applica-
        tion  usually  running  in the directory that it was started in (unless
        the user specifies otherwise) since that minimizes user confusion.  The
-       way to do this is to save the current directory while the external com‐
+       way to do this is to save the current directory while the external com-
        mand is being run:
-	      set tarFile [file normalize somefile.tar]
-	      set savedDir [pwd]
-	      cd /tmp
-	      exec tar -xf $tarFile
-	      cd $savedDir
+              set tarFile [file normalize somefile.tar]
+              set savedDir [pwd]
+              cd /tmp
+              exec tar -xf $tarFile
+              cd $savedDir
 
 SEE ALSO
        file(n), cd(n), glob(n), filename(n)
@@ -37,4 +37,4 @@ KEYWORDS
 
 
 
-Tcl									pwd(n)
+Tcl                                                                     pwd(n)

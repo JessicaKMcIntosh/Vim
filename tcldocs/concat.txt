@@ -1,4 +1,4 @@
-concat(n)		     Tcl Built-In Commands		     concat(n)
+concat(n)                    Tcl Built-In Commands                   concat(n)
 
 
 
@@ -20,23 +20,23 @@ DESCRIPTION
        supplied, the result is an empty string.
 
 EXAMPLES
-       Although	 concat will concatenate lists, flattening them in the process
+       Although  concat will concatenate lists, flattening them in the process
        (so giving the following interactive session):
 
-	      % concat a b {c d e} {f {g h}}
-	      a b c d e f {g h}
+              % concat a b {c d e} {f {g h}}
+              a b c d e f {g h}
 
        it will also concatenate things that are not lists, as can be seen from
        this session:
 
-	      % concat " a b {c	  " d "	 e} f"
-	      a b {c d e} f
+              % concat " a b {c   " d "  e} f"
+              a b {c d e} f
 
        Note also that the concatenation does not remove spaces from the middle
        of values, as can be seen here:
 
-	      % concat "a   b	c" { d e f }
-	      a	  b   c d e f
+              % concat "a   b   c" { d e f }
+              a   b   c d e f
 
        (i.e., there are three spaces between each of the a, the b and the c).
 
@@ -48,4 +48,4 @@ KEYWORDS
 
 
 
-Tcl				      8.3			     concat(n)
+Tcl                                   8.3                            concat(n)

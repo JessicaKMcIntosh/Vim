@@ -1,4 +1,4 @@
-llength(n)		     Tcl Built-In Commands		    llength(n)
+llength(n)                   Tcl Built-In Commands                  llength(n)
 
 
 
@@ -19,27 +19,27 @@ DESCRIPTION
 
 EXAMPLES
        The result is the number of elements:
-	      % llength {a b c d e}
-	      5
-	      % llength {a b c}
-	      3
-	      % llength {}
-	      0
+              % llength {a b c d e}
+              5
+              % llength {a b c}
+              3
+              % llength {}
+              0
 
-       Elements are not guaranteed to be exactly words in a  dictionary	 sense
+       Elements are not guaranteed to be exactly words in a  dictionary  sense
        of course, especially when quoting is used:
-	      % llength {a b {c d} e}
-	      4
-	      % llength {a b { } c d e}
-	      6
+              % llength {a b {c d} e}
+              4
+              % llength {a b { } c d e}
+              6
 
        An empty list is not necessarily an empty string:
-	      % set var { }; puts "[string length $var],[llength $var]"
-	      1,0
+              % set var { }; puts "[string length $var],[llength $var]"
+              1,0
 
 
 SEE ALSO
-       list(n),	  lappend(n),	lindex(n),  linsert(n),	 lsearch(n),  lset(n),
+       list(n),   lappend(n),   lindex(n),  linsert(n),  lsearch(n),  lset(n),
        lsort(n), lrange(n), lreplace(n)
 
 
@@ -48,4 +48,4 @@ KEYWORDS
 
 
 
-Tcl								    llength(n)
+Tcl                                                                 llength(n)

@@ -1,4 +1,4 @@
-lrepeat(n)		     Tcl Built-In Commands		    lrepeat(n)
+lrepeat(n)                   Tcl Built-In Commands                  lrepeat(n)
 
 
 
@@ -19,14 +19,14 @@ DESCRIPTION
        arg is required with lrepeat.
 
 EXAMPLES
-	      lrepeat 3 a
-		    → a a a
-	      lrepeat 3 [lrepeat 3 0]
-		    → {0 0 0} {0 0 0} {0 0 0}
-	      lrepeat 3 a b c
-		    → a b c a b c a b c
-	      lrepeat 3 [lrepeat 2 a] b c
-		    → {a a} b c {a a} b c {a a} b c
+              lrepeat 3 a
+                    -> a a a
+              lrepeat 3 [lrepeat 3 0]
+                    -> {0 0 0} {0 0 0} {0 0 0}
+              lrepeat 3 a b c
+                    -> a b c a b c a b c
+              lrepeat 3 [lrepeat 2 a] b c
+                    -> {a a} b c {a a} b c {a a} b c
 
 SEE ALSO
        list(n), lappend(n), linsert(n), llength(n), lset(n)
@@ -37,4 +37,4 @@ KEYWORDS
 
 
 
-Tcl				      8.5			    lrepeat(n)
+Tcl                                   8.5                           lrepeat(n)
