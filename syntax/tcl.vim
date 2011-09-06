@@ -21,7 +21,7 @@ elseif exists("b:current_syntax")
 endif
 
 " unlet perl_include_pod " Disable Perl POD highlighting.
-let perl_include_pod " Enable Perl POD highlighting.
+let perl_include_pod=1 " Enable Perl POD highlighting.
 
 " Include Perl POD as embedded documentation.
 " POD documentation can be embedded inside two containers:

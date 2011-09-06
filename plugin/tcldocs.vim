@@ -16,7 +16,7 @@ let loaded_tcldocs = 1
 
 " Make sure the Tcl Docs can be found.
 if exists('tcldocs_path')
-    let s:tcldocs_path
+    let s:tcldocs_path = g:tcldocs_path
 elseif has ("win32")
     let s:tcldocs_path = "~/vimfiles/tcldocs"
 else
