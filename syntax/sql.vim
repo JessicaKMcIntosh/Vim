@@ -154,8 +154,8 @@ syn region  sqlParens       transparent matchgroup=sqlParenFunc start="\(\<\w\+\
 " Highlight types correctly inside 'CREATE TABLE ();' statements.
 " All other SQL is properly highlighted as well.
 syn region  sqlTypeParens   contained matchgroup=sqlType start="(" end=")" contains=@sqlALL
-syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*[^ ,()]\+\s\+\)\@<=\w\+\(\s*([^)]\+)\)\?" contains=sqlType,sqlTypeParens
-syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*\w\+\s\+\)\@<=character\s\+varying\s*([^)]\+)" contains=sqlType,sqlTypeParens
+syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*\S\+\s\+\)\@<=\w\+\(\s*([^)]\+)\)\?" contains=sqlType,sqlTypeParens
+syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*\S\+\s\+\)\@<=character\s\+varying\s*([^)]\+)" contains=sqlType,sqlTypeParens
 syn region  sqlTypeRegion   matchgroup=sqlParen start="\(create\s\+table\s\+[^(]\+\s\+\)\@<=(" end=")" contains=@sqlALL,sqlTypeMatch
 
 " Stolen from sh.vim.
