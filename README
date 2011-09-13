@@ -3,6 +3,11 @@ These are under either the original copyright or the public domain.
 
 Files:
     color/lorance.vim   - Custom color format. Close to old Vim colors.
+    compiler/nagelfar.vim
+                        - Use Nagelfar as a compiler command for checking Tcl
+                          syntax.  Works best if g:nagelfar_file is set to the
+                          full path of the nagelfar.tcl file. Works correctly
+                          in Windows if tclsh is in the path.
     syntax/sh.vim       - The standard sh.vim with embedded AWK syntax.
     syntax/sql.vim      - More complete SQL syntax. Catches errors and
                           only highlights types inside create table
