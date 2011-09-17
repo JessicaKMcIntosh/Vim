@@ -7,7 +7,9 @@
 " License:      Public Domain
 "
 " Install:       in ~/.vim/plugin or ~/vimfiles/plugin
-"
+
+" **** XXX This now lives at https://github.com/LStinson/TagmaTips XXX ****
+
 " Description:
 " Displays a tooltip when the cursor hovers over a TCL command or variable.
 " When the buffer is written will also scan for all proc definitions.

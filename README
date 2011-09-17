@@ -3,28 +3,37 @@ These are under either the original copyright or the public domain.
 
 Files:
     color/lorance.vim   - Custom color format. Close to old Vim colors.
+
     compiler/nagelfar.vim
+**** This now lives at https://github.com/LStinson/Nagelfar-Vim ****
                         - Use Nagelfar as a compiler command for checking Tcl
                           syntax.  Works best if g:nagelfar_file is set to the
                           full path of the nagelfar.tcl file. Works correctly
                           in Windows if tclsh is in the path.
+
     syntax/sh.vim       - The standard sh.vim with embedded AWK syntax.
+
     syntax/sql.vim      - More complete SQL syntax. Catches errors and
                           only highlights types inside create table
                           statements.
+
     syntax/tcl.vim      - Heavily reworked Tcl syntax file.
                           A work in progress.
+
     plugin/tcl_tooltips.vim
+**** This now lives at https://github.com/LStinson/TagmaTips ****
                         - Provides Tool Tips for Tcl code. Contains lists for
                           Tcl commands and variables. Will also scan the
                           current buffer for procedures adding the definition
                           and description comments. I am going to make this a
                           generic plugin with support for other languages.
+
     plugin/tcldocs.vim  - Lookup TCL documentation.
                           Requires the tcldocs directory.
                           Typing '\td' will lookup the word under the cursor or
                           highlighted word. Typing '\TD' will ask for a word to
                           lookup. If the word can not be found 'tcl' is loaded.
+
     tcldocs/            - Doc files for plugin/tcldocs.vim.
                           To generate the doc files for your Tcl environment see
                           the gen.sh script in the directory.

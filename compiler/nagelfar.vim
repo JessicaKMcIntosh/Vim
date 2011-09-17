@@ -3,6 +3,8 @@
 " Maintainer:	Lorance Stinson AT Gmail...
 " Last Change:	2011-09-13
 
+" **** XXX This now lives at https://github.com/LStinson/Nagelfar-Vim XXX ****
+
 " Nagelfar can be downloaded from <http://nagelfar.berlios.de/>
 " By default executes 'nagelfar.tcl'.
 " Set g:nagelfar_file to the location of the 'nagelfar.tcl' file
