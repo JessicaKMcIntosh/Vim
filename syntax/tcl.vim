@@ -19,9 +19,13 @@ if version < 600
 elseif exists("b:current_syntax")
     finish
 endif
+" -------------------------
 
-" unlet perl_include_pod " Disable Perl POD highlighting.
-let perl_include_pod=1 " Enable Perl POD highlighting.
+" -------------------------
+" Pod Include:
+" -------------------------
+" unlet tcl_include_pod " Disable Perl POD highlighting.
+" let tcl_include_pod=1 " Enable Perl POD highlighting.
 
 " Include Perl POD as embedded documentation.
 " POD documentation can be embedded inside two containers:
@@ -43,7 +47,7 @@ let perl_include_pod=1 " Enable Perl POD highlighting.
 "
 "=cut
 "}
-if exists("perl_include_pod")
+if exists("tcl_include_pod")
     if exists("b:current_syntax")
         unlet b:current_syntax
     endif
@@ -286,23 +290,14 @@ call s:pred_w_subcmd('update',      '','idletasks')
 call s:pred_w_switches('names',     'tclArrayNames','"-\(exact\|glob\|regexp\)\>"')
 call s:pred_w_subcmd('array',       'tclArrayNames','anymore donesearch exists get nextelement set size startsearch statistics unset')
 
-syn keyword tclPrimary      contained clock skipwhite nextgroup=tclClockPred
-syn region  tclClockPred    contained excludenl keepend start=+.+ skip=+\\$+ end=+}\|]\|;\|$+ contains=tclClockCmds,@tclStuff
-syn keyword tclClockCmds    contained microseconds milliseconds seconds skipwhite nextgroup=tclClockCmdsMicrosecondsPred
-syn region  tclClockCmdsMicrosecondsPred contained excludenl keepend start=+.+ skip=+\\$+ end=+}\|]\|;\|$+ contains=,@tclStuff
-syn match   tclClockCmdsAddOptsGroup contained "-\a\+" contains=tclClockCmdsAddOpts
-syn keyword tclClockCmdsAddOpts contained base format gmt locale timezone
-syn keyword tclClockCmds contained add clicks format scan skipwhite nextgroup=tclClockCmdsAddPred
-syn region  tclClockCmdsAddPred contained excludenl keepend start=+.+ skip=+\\$+ end=+}\|]\|;\|$+ contains=tclClockCmdsAddOptsGroup,@tclStuff skipwhite nextgroup=tclClockCmds
+call s:pred_w_switches('add',       'tclClockOptions','"-\(base\|format\|gmt\|locale\|timezone\)\>"')
+call s:pred_w_switches('clicks',    'tclClockOptions','"-\(base\|format\|gmt\|locale\|timezone\)\>"')
+call s:pred_w_switches('format',    'tclClockOptions','"-\(base\|format\|gmt\|locale\|timezone\)\>"')
+call s:pred_w_switches('scan',      'tclClockOptions','"-\(base\|format\|gmt\|locale\|timezone\)\>"')
+call s:pred_w_subcmd('clock',       'tclClockOptions','microseconds milliseconds seconds')
 
-syn keyword tclPrimary      contained dict skipwhite nextgroup=tclDictPred
-syn region  tclDictPred     contained excludenl keepend start=+.+ skip=+\\$+ end=+}\|]\|;\|$+ contains=tclDictCmds,@tclStuff
-syn keyword tclDictCmds     contained append create exists for get incr info keys lappend merge remove replace set size unset update values with skipwhite nextgroup=tclDictCmdsAppendPred
-syn region  tclDictCmdsAppendPred contained excludenl keepend start=+.+ skip=+\\$+ end=+}\|]\|;\|$+ contains=,@tclStuff
-syn match   tclDictCmdsFilterOptsGroup contained "-\a\+" contains=tclDictCmdsFilterOpts
-syn keyword tclDictCmdsFilterOpts contained key script value
-syn keyword tclDictCmds     contained filter skipwhite nextgroup=tclDictCmdsFilterPred
-syn region  tclDictCmdsFilterPred contained excludenl keepend start=+.+ skip=+\\$+ end=+}\|]\|;\|$+ contains=tclDictCmdsFilterOptsGroup,@tclStuff skipwhite nextgroup=tclDictCmds
+call s:pred_w_switches('filter',      'tclDictFilter','"\<\(key\|script\|value\)\>"')
+call s:pred_w_subcmd('dict',        'tclDictFilter','append create exists for get incr info keys lappend merge remove replace set size unset update values with')
 
 syn keyword tclPrimary contained chan skipwhite nextgroup=tclChanPred
 syn region  tclChanPred contained excludenl keepend start=+.+ skip=+\\$+ end=+}\|]\|;\|$+ contains=tclChanCmds,@tclStuff
