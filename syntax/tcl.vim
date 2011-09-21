@@ -14,7 +14,7 @@
 " This file is very much a work in progress.
 "
 " ------------------------------------------------------------------------
-" Note:
+" Note: Procedure Name Color
 " Procedure names in the 'proc' command are highlighted as 'Operator'.
 " In my Vim setup this is orange. Most color schemes do not make 'Operator'
 " stand out clearly. To change the procedure color alter the 'tclProcName'
@@ -22,6 +22,10 @@
 " The line resembles:
 "   HiLink tclProcName       Operator
 " ------------------------------------------------------------------------
+"
+" To diable highlighting words that start with an underscore as errors set the
+" variable g:tcl_syntax_underscore to a true value. eg.
+"   let g:tcl_syntax_underscore=1
 
 " -------------------------
 if version < 600
@@ -219,7 +223,9 @@ syn match   tclProcName     contained "\S\+" skipwhite contains=tclNamespace nex
 syn region  tclProcArgs     contained extend keepend excludenl matchgroup=tclBracesArgs start=+\(\\\)\@<!{+ end=+}+ skip=+$\|\(\\\)\@<!\\}+ skipwhite contains=tclFoldBraces
 
 " Underscore leader. Make it stand out.
-syn match   tclUnderscore   contained "\<_\w\+\>" skipwhite
+if !exists('g:tcl_syntax_underscore')
+    syn match   tclUnderscore   contained "\<_\w\+\>" skipwhite
+endif
 
 
 " -------------------------
