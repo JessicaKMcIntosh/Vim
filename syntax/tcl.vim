@@ -1,8 +1,9 @@
 " Vim syntax file for Tcl language
 " Language:     Tcl (NO Tk)
 " Maintained:   Lorance Stinson <Lorance Stinson AT gmail DOT com>
-" Last Change:  Mon, Aug 22, 2011
+" Last Change:  Wed, Sep 21, 2011
 " Filenames:    *.tcl
+" GitHub Home:  https://github.com/LStinson/Vim
 "
 " Based on the Tcl.vim script by SM Smithfield.
 " See vim.org for the original.
@@ -11,6 +12,15 @@
 " I am working on updating, simplifying and fixing some strange bugs.
 " Additions are being made for Jim TCL extensions.
 " This file is very much a work in progress.
+"
+" ------------------------------------------------------------------------
+" Note:
+" Procedure names in the 'proc' command are highlighted as 'Operator'.
+" In my Vim setup this is orange. Most color schemes do not make 'Operator'
+" stand out clearly. To change the procedure color alter the 'tclProcName'
+" definition below. I suggest string for a good substiture.
+" The line resembles:
+"   HiLink tclProcName       Operator
 " ------------------------------------------------------------------------
 
 " -------------------------
@@ -143,7 +153,7 @@ syn region perlPODProc      contained start=+^pod_doc\s*{$+ skip=+$\|\(\\\)\@<!\
 " -------------------------
 syn cluster tclKeywords     contains=tclPrimary,tclPredicates,tclKeyword,tclConditional,tclRepeat,tclLabel,tclMagicName
 " ------------------
-syn cluster tclBits         contains=PerlPODProc,tclBraces,tclBrackets,tclComment,tclExpand,@tclLContinue,tclNumber,tclQuotes,tclSpecial,tclSemiColon,tclNamespace
+syn cluster tclBits         contains=PerlPODProc,tclBraces,tclBrackets,tclComment,tclExpand,@tclLContinue,tclNumber,tclQuotes,tclSpecial,tclSemiColon,tclNamespace,tclUnderscore
 syn cluster tclStuff        contains=@tclBits,tclVariable,tclREClassGroup
 syn cluster tclOpts         contains=tclEndOpts,@tclStuff
 syn cluster tclWord0Clstr   contains=@tclStuff
@@ -157,7 +167,7 @@ syn cluster tclCommandClstr contains=@tclKeywords,tclWord0,tclComment
 " -------------------------
 " Tcl: Syntax
 " -------------------------
-syn keyword tclKeyword      contained append apply auto_execok auto_import auto_load auto_mkindex auto_qualify auto_reset cd close concat eof exit error fblocked flush format gets global http incr join lappend lassign lindex linsert llength lmap load lrange lrepeat lreplace lreverse lset namespace parray pid pkg_mkIndex proc pwd registry rename scan set split tclLog tcl_endOfWord tcl_findLibrary tcl_startOfNextWord tcl_startOfPreviousWord tcl_wordBreakAfter tcl_wordBreakBefore tell time unknown upvar variable vwait skipwhite nextgroup=tclPred
+syn keyword tclKeyword      contained append apply auto_execok auto_import auto_load auto_mkindex auto_qualify auto_reset cd close concat eof exit error fblocked flush format gets global http incr join lappend lassign lindex linsert llength lmap load lrepeat lreplace lreverse lset namespace parray pid pkg_mkIndex proc pwd registry rename scan set split tclLog tcl_endOfWord tcl_findLibrary tcl_startOfNextWord tcl_startOfPreviousWord tcl_wordBreakAfter tcl_wordBreakBefore tell time unknown upvar variable vwait skipwhite nextgroup=tclPred
 syn keyword tclMagicName    contained argc argv argv0 auto_index auto_oldpath auto_path env errorCode errorInfo tcl_interactive tcl_libpath tcl_library tlc_patchlevel tcl_pkgPath tcl_platform tcl_precision tcl_rcFileName tcl_rcRsrcName tcl_traceCompile tcl_traceExec tcl_version
 " ------------------
 syn region  tclPred         contained keepend start=+.+ skip=+\\$+ end=+}\|]\|;\|$+ contains=@tclStuff
@@ -193,6 +203,12 @@ syn match   tclMaths        contained "[()^%~<>!=+*\-|&?:/]"
 syn region  tclIfComment    contained extend keepend matchgroup=Comment start=+\(\\\)\@<!{+  skip=+$\|\\}+ end=+}+ contains=@PerlPod,tclIfComment,tclTodo,@Spell
 syn match   tclIfCommentStart contained extend  "\s*\(0\|{0}\)" skipwhite nextgroup=tclIfComment
 
+" Variable name highlighting.
+syn keyword tclPrimary      contained append foreach incr lappend lset set skipwhite nextgroup=tclVarName
+syn match   tclVarName      contained "\a\S\+" skipwhite contains=@tclStuff
+syn keyword tclPrimary      contained global variable skipwhite nextgroup=tclVarNames
+syn match   tclVarNames     contained "\a.\+\($\|;\)" skipwhite contains=@tclStuff,tclVarName
+
 " PROC - proc name hilite AND folding
 syn keyword tclPrimary      contained proc _proc skipwhite nextgroup=tclProcName
 " def-script pattern
@@ -200,7 +216,10 @@ syn match   tclProcDef      contained "\S\+" skipwhite nextgroup=tclFoldBraces
 " type-name-args-script pattern
 syn match   tclProcType     contained "\S\+" skipwhite nextgroup=tclProcName
 syn match   tclProcName     contained "\S\+" skipwhite contains=tclNamespace nextgroup=tclProcArgs
-syn region  tclProcArgs     contained extend keepend excludenl matchgroup=tclBracesArgs start=+\(\\\)\@<!{+  skip=+$\|\\}+ end=+}+ contains=tclProcArgs skipwhite nextgroup=tclFoldBraces
+syn region  tclProcArgs     contained extend keepend excludenl matchgroup=tclBracesArgs start=+\(\\\)\@<!{+ end=+}+ skip=+$\|\(\\\)\@<!\\}+ skipwhite contains=tclFoldBraces
+
+" Underscore leader. Make it stand out.
+syn match   tclUnderscore   contained "\<_\w\+\>" skipwhite
 
 
 " -------------------------
@@ -276,12 +295,13 @@ call s:pred_w_switches('switch',    '','"-\(exact\|glob\|regexp\|nocase\|matchva
 call s:pred_w_switches('unload',    '','"-\(nocomplain\|keeplibrary\)\>"')
 call s:pred_w_switches('unset',     '','"-\(nocomplain\)\>"')
 
-" Predicates with sub commands..
+" Predicates with sub commands.
 call s:pred_w_subcmd('after',       '','cancel idle info')
 call s:pred_w_subcmd('binary',      '','format scan decode encode')
 call s:pred_w_subcmd('encoding',    '','convertfrom convertto names system')
 call s:pred_w_subcmd('fileevent',   '','readable writable')
 call s:pred_w_subcmd('info',        '','args body cmdcount commands complete default exists frame functions globals hostname level library loaded locals nameofexecutable patchlevel procs script sharedlibextension tclversion vars')
+call s:pred_w_subcmd('lrange',      '','start end')
 call s:pred_w_subcmd('memory',      '','active break info init onexit tag trace validate')
 call s:pred_w_subcmd('seek',        '','start current end')
 call s:pred_w_subcmd('update',      '','idletasks')
@@ -296,7 +316,7 @@ call s:pred_w_switches('format',    'tclClockOptions','"-\(base\|format\|gmt\|lo
 call s:pred_w_switches('scan',      'tclClockOptions','"-\(base\|format\|gmt\|locale\|timezone\)\>"')
 call s:pred_w_subcmd('clock',       'tclClockOptions','microseconds milliseconds seconds')
 
-call s:pred_w_switches('filter',      'tclDictFilter','"\<\(key\|script\|value\)\>"')
+call s:pred_w_switches('filter',    'tclDictFilter','"\<\(key\|script\|value\)\>"')
 call s:pred_w_subcmd('dict',        'tclDictFilter','append create exists for get incr info keys lappend merge remove replace set size unset update values with')
 
 syn keyword tclPrimary contained chan skipwhite nextgroup=tclChanPred
@@ -453,7 +473,8 @@ HiLink tclSubcommand     Type
 HiLink tclVariable       Identifier
 HiLink tclEnsemble       Special
 HiLink tclMaths          Special
-HiLink tclProcName       Bold
+HiLink tclProcName       Operator
+HiLink tclVarName        Type
 HiLink tclProcDef        Bold
 HiLink tclProcType       Bold
 HiLink tclMagicName      tclKeyword
@@ -514,6 +535,7 @@ HiLink tclBracesArgs                    Type
 HiLink tclBracesExpression              Special
 HiLink tclEndOpts                       Type
 HiLink tclKeywordPred                   tclKeyword
+HiLink tclUnderscore                    ERROR
 
 " Perl POD Documentation.
 HiLink perlPODProc                      Comment

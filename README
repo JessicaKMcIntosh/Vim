@@ -19,6 +19,8 @@ Files:
 
     syntax/tcl.vim      - Heavily reworked Tcl syntax file.
                           A work in progress.
+                          See the Note at the top of the file regarding the
+                          color of procedure names.
 
     plugin/tcl_tooltips.vim
 **** This now lives at https://github.com/LStinson/TagmaTips ****
