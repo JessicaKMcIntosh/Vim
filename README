@@ -22,6 +22,11 @@ Files:
                           See the Note at the top of the file regarding the
                           color of procedure names.
 
+    plugin/securemodelines.vim
+                        - Modification to the securemodelines.vim plugin to
+                          allow more marker settings. The original does not
+                          allow setting foldmarker or foldlevel.
+
     plugin/tcl_tooltips.vim
 **** This now lives at https://github.com/LStinson/TagmaTips ****
                         - Provides Tool Tips for Tcl code. Contains lists for
