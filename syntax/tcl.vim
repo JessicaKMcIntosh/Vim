@@ -147,7 +147,7 @@ syn region  tclStart        start="\%^\s*#!/bin/sh"  end="^\s*exec.*$"
 
 syn match   tclBraceError   "}"
 syn match   tclBracketError "]"
-syn match   tclIfError      "if [\[(]"
+syn match   tclIfError      contained "\s\+[\[(].*"
 
 " Embedded Perl POD documentation.
 syn region perlPODProc      contained start=+^pod_doc\s*{$+ skip=+$\|\(\\\)\@<!\\}+ end=+^\s*}$+ contains=@PerlPod,@Spell,tclTodo
@@ -177,7 +177,7 @@ syn keyword tclMagicName    contained argc argv argv0 auto_index auto_oldpath au
 syn region  tclPred         contained keepend start=+.+ skip=+\\$+ end=+}\|]\|;\|$+ contains=@tclStuff
 
 " CONDITIONALS
-syn keyword tclPrimary      contained if skipwhite nextgroup=tclIfCommentStart,tclExpression,@tclStuff
+syn keyword tclPrimary      contained if skipwhite nextgroup=tclIfError,tclIfCommentStart,tclExpression,@tclStuff
 syn keyword tclConditional  contained elseif skipwhite nextgroup=tclExpression,@tclStuff
 syn keyword tclConditional  contained else then
 
