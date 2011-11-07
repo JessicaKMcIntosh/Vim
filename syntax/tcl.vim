@@ -215,12 +215,10 @@ syn match   tclVarNames     contained "\a.\+\($\|;\)" skipwhite contains=@tclStu
 
 " PROC - proc name hilite AND folding
 syn keyword tclPrimary      contained proc _proc skipwhite nextgroup=tclProcName
-" def-script pattern
-syn match   tclProcDef      contained "\S\+" skipwhite nextgroup=tclFoldBraces
 " type-name-args-script pattern
 syn match   tclProcType     contained "\S\+" skipwhite nextgroup=tclProcName
 syn match   tclProcName     contained "\S\+" skipwhite contains=tclNamespace nextgroup=tclProcArgs
-syn region  tclProcArgs     contained extend keepend excludenl matchgroup=tclBracesArgs start=+\(\\\)\@<!{+ end=+}+ skip=+$\|\(\\\)\@<!\\}+ skipwhite contains=tclFoldBraces
+syn region  tclProcArgs     contained extend keepend excludenl matchgroup=tclBracesArgs start=+\(\\\)\@<!{+ end=+}+ skip=+$\|\(\\\)\@<!\\}+ skipwhite nextgroup=tclFoldBraces
 
 " Underscore leader. Make it stand out.
 if !exists('g:tcl_syntax_underscore')
@@ -481,7 +479,6 @@ HiLink tclEnsemble       Special
 HiLink tclMaths          Special
 HiLink tclProcName       Operator
 HiLink tclVarName        Type
-HiLink tclProcDef        Bold
 HiLink tclProcType       Bold
 HiLink tclMagicName      tclKeyword
 HiLink tclNamespace      tclSpecial
