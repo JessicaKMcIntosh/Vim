@@ -11,6 +11,10 @@ Files:
                           full path of the nagelfar.tcl file. Works correctly
                           in Windows if tclsh is in the path.
 
+    indent/awk.vim      - AWK indention file adapted from the Perl indention
+                          file. The default AWK indention file was overly
+                          complex and didn't work correctly.
+
     syntax/sh.vim       - The standard sh.vim with embedded AWK syntax.
 
     syntax/sql.vim      - More complete SQL syntax. Catches errors and
