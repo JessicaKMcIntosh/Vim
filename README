@@ -22,6 +22,9 @@ Files:
                           See the Note at the top of the file regarding the
                           color of procedure names.
 
+    plugin/pulse.vim    - Pulse the cursor line when repeating a search with
+                          "n" or "N". See the file for details.
+
     plugin/securemodelines.vim
                         - Modification to the securemodelines.vim plugin to
                           allow more marker settings. The original does not
