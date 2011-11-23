@@ -15,6 +15,7 @@ endif
 let g:colors_name = "lorance"
 
 " GUI
+highlight ColorColumn                       guibg=#111111           gui=none
 highlight Comment       guifg=LightBlue                             gui=none
 highlight Constant      guifg=LightRed                              gui=none
 highlight Conditional   guifg=Yellow                                gui=none
@@ -30,11 +31,11 @@ highlight Identifier    guifg=Cyan                                  gui=none
 highlight Keyword       guifg=DarkMagenta                           gui=none
 highlight Normal        guifg=LightGrey     guibg=Black
 highlight Operator      guifg=Brown                                 gui=none
-highlight Pmenu         guifg=LightGrey     guibg=Black             gui=none
+highlight Pmenu         guifg=Black         guibg=LightGrey         gui=none
 highlight PmenuSel      guifg=Black         guibg=LightMagenta      gui=none
 highlight PreProc       guifg=LightMagenta                          gui=none
 highlight Search        guifg=Black         guibg=Yellow
-highlight Special       guifg=LightMagenta                          gui=none
+highlight Special       guifg=Magenta                               gui=none
 highlight Statement     guifg=Yellow                                gui=none
 highlight StatusLine    guifg=LightBlue     guibg=Black
 highlight StatusLineNC  guifg=LightRed      guibg=Black
@@ -43,6 +44,7 @@ highlight Type          guifg=LightGreen                            gui=none
 highlight WarningMsg    guifg=Red                                   gui=bold
 
 " Console
+highlight ColorColumn                       ctermbg=DarkGrey        cterm=none
 highlight Comment       ctermfg=Blue
 highlight Constant      ctermfg=Red
 highlight Conditional   ctermfg=Yellow
@@ -58,7 +60,7 @@ highlight Identifier    ctermfg=Cyan                                cterm=none
 highlight Keyword       ctermfg=DarkMagenta
 highlight Normal        ctermfg=LightGrey
 highlight Operator      ctermfg=Brown
-highlight Pmenu         ctermfg=LightGrey   ctermbg=Black           cterm=none
+highlight Pmenu         ctermfg=Black       ctermbg=LightGrey       cterm=none
 highlight PmenuSel      ctermfg=Black       ctermbg=LightMagenta    cterm=none
 highlight PreProc       ctermfg=Magenta
 highlight Search        ctermfg=Black       ctermbg=Yellow
