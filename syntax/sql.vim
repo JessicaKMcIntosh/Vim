@@ -51,6 +51,7 @@ syn keyword sqlKeyword      rowlabel rownum rows schema session share size
 syn keyword sqlKeyword      start successful synonym then to transaction trigger
 syn keyword sqlKeyword      uid user using validate values view virtual whenever
 syn keyword sqlKeyword      where with
+syn match   sqlKeyword      "\<prompt\>"
 syn match   sqlKeyword      "\<glob\>"
 " Do special things with CREATE TABLE ( below.
 syn match   sqlKeyword      "\<table\>"
@@ -76,8 +77,9 @@ syn keyword sqlKeyword      wal_autocheckpoint wal_checkpoint writable_schema
 
 " Operators
 syn keyword sqlOperator     all and any between case distinct elif else end
-syn keyword sqlOperator     exists if in intersect is like match matches not
-syn keyword sqlOperator     or regexp some then union unique when
+syn keyword sqlOperator     exists if in intersect is like match matches minus
+syn keyword sqlOperator     not or out prior regexp some then union unique when
+syn match   sqlOperator     "||\|:="
 
 " Functions - Only valid with a '(' after them.
 syn match   sqlFunction     "\<\(abs\|acos\|asin\|atan2\?\|avg\|cardinality\)(\@="
@@ -103,11 +105,9 @@ syn match   sqlFunction     "^\.\w\+"
 " Statements
 syn keyword sqlStatement    alter analyze audit begin comment commit delete
 syn keyword sqlStatement    drop execute explain grant insert lock noaudit
-syn keyword sqlStatement    rename revoke rollback savepoint select set
+syn keyword sqlStatement    rename revoke rollback savepoint select
 syn keyword sqlStatement    truncate update vacuum
-syn match   sqlStatement    "\<replace\>"
-" Do special things with CREATE TABLE ( below.
-syn match   sqlStatement    "\<create\>"
+syn match   sqlStatement    "\<\(replace\|create\)\>"
 
 " SQLite Statements
 syn keyword sqlStatement    attach detach indexed pragma reindex
@@ -117,20 +117,23 @@ syn keyword sqlType         contained bigint bit blob bool boolean byte char
 syn keyword sqlType         contained clob date datetime dec decimal enum
 syn keyword sqlType         contained float int int8 integer interval long
 syn keyword sqlType         contained longblob longtext lvarchar mediumblob
-syn keyword sqlType         contained mediumint mediumtext money multiset nchar
-syn keyword sqlType         contained number numeric nvarchar raw real rowid
-syn keyword sqlType         contained serial serial8 set smallfloat smallint
-syn keyword sqlType         contained smallint text time timestamp tinyblob
-syn keyword sqlType         contained tinyint tinytext varchar varchar2 varray
-syn keyword sqlType         contained year
+syn keyword sqlType         contained mediumint mediumtext mlslabel money
+syn keyword sqlType         contained multiset nchar number numeric nvarchar
+syn keyword sqlType         contained raw real rowid serial serial8 set
+syn keyword sqlType         contained smallfloat smallint text time
+syn keyword sqlType         contained timestamp tinyblob tinyint tinytext
+syn keyword sqlType         contained varchar varchar2 varray year
 syn match   sqlType         contained "\<\(character\|double\|varying\)\>"
 syn match   sqlType         contained "\<character\s\+varying\>"
 syn match   sqlType         contained "\<double\s\+precision\>"
 
+" Oracle Variables
+syn match   sqlVariable     contained "&\a\w\+"
+
 " Strings
-syn region sqlString        start=+"+  skip=+\\\\\|\\"+  end=+"+
-syn region sqlString        start=+'+  skip=+\\\\\|\\'+  end=+'+
-syn region sqlString        start=+`+  skip=+\\\\\|\\`+  end=+`+
+syn region sqlString        start=+"+  skip=+\\\\\|\\"+  end=+"+ contains=sqlVariable
+syn region sqlString        start=+'+  skip=+\\\\\|\\'+  end=+'+ contains=sqlVariable
+syn region sqlString        start=+`+  skip=+\\\\\|\\`+  end=+`+ contains=sqlVariable
 
 " Numbers
 syn match sqlNumber         "-\=\<[0-9]*\>"
@@ -157,6 +160,37 @@ syn region  sqlTypeParens   contained matchgroup=sqlType start="(" end=")" conta
 syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*\S\+\s\+\)\@<=\w\+\(\s*([^)]\+)\)\?" contains=sqlType,sqlTypeParens
 syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*\S\+\s\+\)\@<=character\s\+varying\s*([^)]\+)" contains=sqlType,sqlTypeParens
 syn region  sqlTypeRegion   matchgroup=sqlParen start="\(create\s\+table\s\+[^(]\+\s\+\)\@<=(" end=")" contains=@sqlALL,sqlTypeMatch
+
+" Special Oracle Statements
+syn match   sqlStatement    "^\s*\(prompt\|spool\)\>" nextgroup=sqlAnyString
+syn match   sqlStatement    "^\s*accept\s\+" nextgroup=sqlAnyVariable
+syn match   sqlStatement    "declare\s\+" nextgroup=sqlDeclare
+syn region  sqlDeclare      contained matchgroup=sqlVariable start="\a\w\+" end="$" contains=@sqlALL,sqlType
+syn match   sqlOperator     "^@" nextgroup=sqlAnyString
+syn match   sqlAnyVariable  contained "\a\w\+"
+syn match   sqlAnyString    contained ".*" contains=sqlVariable
+
+syn region  sqlSetRegion    matchgroup=sqlStatement start="^\s*set\>" matchgroup=NONE end="$" contains=sqlSetOptions,sqlSetValues
+syn keyword sqlSetOptions   contained autorecovery colsep copytypecheck describe escchar flagger
+syn keyword sqlSetOptions   contained instance logsource long null recsep recsepchar
+syn keyword sqlSetOptions   contained 
+syn match   sqlSetOptions   contained "\<\(app\w*\|array\w*\|auto\w*\|autop\w*\)\>"
+syn match   sqlSetOptions   contained "\<\(autot\w*\|blo\w*\|cmds\w*\|con\w*\|copyc\w*\)\>"
+syn match   sqlSetOptions   contained "\<\(def\w*\|echo\|editf\w*\|emb\w*\|errorl\w*\|esc\w*\)\>"
+syn match   sqlSetOptions   contained "\<\(feed\w*\|flu\w*\|hea\w*\|heads\w*\|lin\w*\)\>"
+syn match   sqlSetOptions   contained "\<\(lobof\w*\|longc\w*\|mark\w*\|newp\w*\|numf\w*\)\>"
+syn match   sqlSetOptions   contained "\<\(pages\w*\|pau\w*\|serverout\w*\|shift\w*\|show\w*\)\>"
+syn match   sqlSetOptions   contained "\<\(sqlbl\w*\|sqlc\w*\|sqlco\w*\|sqln\w*\|sqlpluscompat\w*\)\>"
+syn match   sqlSetOptions   contained "\<\(sqlpre\w*\|sqlp\w*\|sqlt\w*\|suf\w*\|tab\)\>"
+syn match   sqlSetOptions   contained "\<\(term\w*\|timi\w*\|und\w*\|ver\w*\|wra\w\?\)\>"
+syn match   sqlSetOptions   contained "\<\(xquery\s\+\(baseuri\|ordering\|node\|context\)\)\>"
+syn keyword sqlSetValues    contained all body byreference byvalue default
+syn keyword sqlSetValues    contained entry fill head html identifier indent
+syn keyword sqlSetValues    contained linenum local none off on size table truncate
+syn match   sqlSetValues    contained "\<\(ea\w*\|wr\w*\|imm\w*\|trace\w*\|expl\w*\|stat\w*\)\>"
+syn match   sqlSetValues    contained "\<\(intermed\w*\|pre\w*\|unl\w*\|for\w*\|wra\w*\|wor\w\?\)\>"
+syn match   sqlSetValues    contained "\<\(vis\w*\|inv\w*\)\>"
+syn match   sqlSetValues    contained "\<\(\(un\)\?ordered\)\>"
 
 " Stolen from sh.vim.
 if !exists("sh_minlines")
@@ -192,6 +226,12 @@ if version >= 508 || !exists("did_sql_syn_inits")
     HiLink sqlString        String
     HiLink sqlTodo          Todo
     HiLink sqlType          Type
+    HiLink sqlVariable      Identifier
+
+    HiLink sqlAnyString     sqlString
+    HiLink sqlAnyVariable   sqlVariable
+    HiLink sqlSetOptions    Operator
+    HiLink sqlSetValues     Special
 
     delcommand HiLink
 endif
