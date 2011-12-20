@@ -15,6 +15,13 @@ Files:
                           file. The default AWK indention file was overly
                           complex and didn't work correctly.
 
+    syntax/perl.vim     - Changes to the default perl.vim.
+
+                          Added more operators.
+                          Made whitespace at the end of a line an error.
+
+    syntax/screen.vim   - The start of a more complete screen syntax file.
+
     syntax/sh.vim       - The standard sh.vim with embedded AWK syntax.
 
     syntax/sql.vim      - More complete SQL syntax. Catches errors and
