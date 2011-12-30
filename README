@@ -11,6 +11,11 @@ Files:
                           full path of the nagelfar.tcl file. Works correctly
                           in Windows if tclsh is in the path.
 
+    compiler/perlcritic.vim
+                        - Compiler plugin for checking Perl code with perlcritic.
+                          To use excute ':compiler perlcritic' them use ':make'
+                          or ':lmake'. See ':help make' in Vim for details.
+
     indent/awk.vim      - AWK indention file adapted from the Perl indention
                           file. The default AWK indention file was overly
                           complex and didn't work correctly.
