@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer: Lorance Stinson <LoranceStinson@gmail.com>
-" Last Change: Wed, Aug 10, 2011
+" Last Change: Fri, Dec 22, 2011
 " grey on black
 " I dislike every color theme I've found, they all have quirks or look like
 " crap on the GUI or Terminal if they look good on the other.
