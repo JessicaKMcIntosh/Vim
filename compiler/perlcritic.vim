@@ -1,7 +1,12 @@
 " Vim Compiler File
 " Compiler: perlcritic
-" Maintainer: Scott Peshak <speshak@gmail.com>
-" Last Change: 2006 Dec 19
+" Maintainer: LoranceStinson@gmail.com
+" Original Author: Scott Peshak <speshak@gmail.com>
+
+" Description:
+" Compiler plugin to check Perl files with perlcritic.
+" To use excute ':compiler perlcritic' them use ':make' or ':lmake'.
+" See ':help make' in Vim for details.
 
 if exists("current_compiler")
 	finish
@@ -19,7 +24,7 @@ if !exists('g:perlcritic_compiler_level')
     let g:perlcritic_compiler_level = 3
 endif
 
-"execute 'CompilerSet makeprg=perlcritic\ -verbose\ 1\ -' . g:perlcritic_compiler_level . '\ %'
+" Changed output format and made the check level an option.
 execute 'CompilerSet makeprg=perlcritic\ -verbose\ \"\\%f:\\%l:\\%c:\\%m.\ \\%e.\ (\\%s)\\n\"\ -' . g:perlcritic_compiler_level . '\ %'
 CompilerSet errorformat=%f:%l:%c:%m
 
