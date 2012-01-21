@@ -1,6 +1,6 @@
 " =============================================================================
 " File:         rcldocs.vim (global plugin)
-" Last Changed: 2011-08-28
+" Last Changed: Fri, Jan 20, 2012
 " Maintainer:   Lorance Stinson AT Gmail...
 " License:      Vim License
 " =============================================================================
@@ -17,10 +17,8 @@ let loaded_tcldocs = 1
 " Make sure the Tcl Docs can be found.
 if exists('tcldocs_path')
     let s:tcldocs_path = g:tcldocs_path
-elseif has ("win32")
-    let s:tcldocs_path = "~/vimfiles/tcldocs"
 else
-    let s:tcldocs_path = "~/.vim/tcldocs"
+    let s:tcldocs_path = expand('<sfile>:p:h:h') . '/tcldocs'
 endif
 let s:tcldocs_path = expand(s:tcldocs_path)
 
@@ -62,13 +60,15 @@ function <SID>TclDocs(...)
     else
         let l:word = a:1
     endif
-    echo "Word: " l:word
 
     let l:file_name = "tcl.txt"
 
     " Try to lookup the word.
     if l:word != '' && filereadable(s:tcldocs_path . "/" . l:word . ".txt")
         let l:file_name = l:word . ".txt"
+    else
+        echomsg 'Unable to locate the TCL documentation for: ' . l:word
+        return
     endif
 
     " Display the text.
@@ -80,7 +80,7 @@ endfunction
 " Taken from asciitable.vim by Jeffrey Harkavy.
 function <SID>TclDocsWindow(file)
     let s:vheight = 19
-    let s:vwinnum=bufnr('__TclDocs')
+    let s:vwinnum=bufnr('_TclDocs_')
     if getbufvar(s:vwinnum, 'TclDocs')=='TclDocs'
         let s:vwinnum=bufwinnr(s:vwinnum)
     else
@@ -95,7 +95,7 @@ function <SID>TclDocsWindow(file)
         setlocal modifiable
         silent %d _
     else
-        execute s:vheight.'split __TclDocs'
+        execute s:vheight.'split _TclDocs_'
     
         setlocal noswapfile
         setlocal buftype=nowrite
@@ -114,5 +114,5 @@ function <SID>TclDocsWindow(file)
     endfor
     goto 1
     setlocal nomodifiable
-    set ft=text
+    set ft=man
 endfunction
