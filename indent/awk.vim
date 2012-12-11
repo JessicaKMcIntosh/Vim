@@ -22,10 +22,11 @@ function! GetAWKIndent()
     " Get the line to be indented
     let cline = getline(v:lnum)
 
-    " Don't reindent coments on first column
-    if cline =~ '^#.'
-        return 0
-    endif
+    " This causes strangeness. Disabled.
+    "" Don't reindent coments on first column
+    "if cline =~ '^#.'
+        "return 0
+    "endif
 
     " Now get the indent of the previous line.
 
