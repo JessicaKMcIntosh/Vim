@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     SQL with SQLite and other additions.
-" Maintainer:   Lorance Stinson <Lorance Stinson AT gmail DOT com>
-" Last Change:  Sun, Aug 21, 2011
+" Maintainer:   Jessica K McIntosh AT gmail DOT com
+" Last Changed: Fri Nov 22 05:03 AM 2013 EST
 
 " More complete SQL matching with error reporting.
 " Only matches types inside 'CREATE TABLE ();'.
