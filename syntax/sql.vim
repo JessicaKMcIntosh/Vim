@@ -46,7 +46,7 @@ syn keyword sqlKeyword      initial inner into is join key left level loop
 syn keyword sqlKeyword      maxextents mode modify nocompress nowait object of
 syn keyword sqlKeyword      off offline on online option order outer pctfree
 syn keyword sqlKeyword      primary privileges procedure public references
-syn keyword sqlKeyword      referencing release resource return role row
+syn keyword sqlKeyword      referencing release resource return role row rowid
 syn keyword sqlKeyword      rowlabel rownum rows schema session share size
 syn keyword sqlKeyword      start successful synonym then to transaction trigger
 syn keyword sqlKeyword      uid user using validate values view virtual whenever
@@ -80,7 +80,10 @@ syn keyword sqlOperator     all and any between case distinct elif else end
 syn keyword sqlOperator     exit exists if in intersect is like match matches
 syn keyword sqlOperator     minus not or out prior regexp some then union
 syn keyword sqlOperator     unique when
-syn match   sqlOperator     "||\|:=\|<\|>\|+\|-"
+syn match   sqlOperator     "||\|:="
+
+" Conditionals
+syn match   sqlConditional  "=\|<\|>\|+\|-"
 
 " Functions - Only valid with a '(' after them.
 syn match   sqlFunction     "\<\(abs\|acos\|asin\|atan2\?\|avg\|cardinality\)(\@="
@@ -103,6 +106,7 @@ syn match   sqlFunction     "\<\(last_insert_rowid\|load_extension\|randomblob\)
 syn match   sqlFunction     "\<\(sqlite_compileoption_get\|sqlite_compileoption_used\)(\@="
 syn match   sqlFunction     "\<\(sqlite_source_id\|sqlite_version\|sqlite_version\)(\@="
 syn match   sqlFunction     "\<\(zeroblob\|ltrim\|rtrim\)(\@="
+
 " SQLite Command Line Client Functions
 syn match   sqlFunction     "^\.\w\+"
 
@@ -132,7 +136,9 @@ syn match   sqlType         contained "\<character\s\+varying\>"
 syn match   sqlType         contained "\<double\s\+precision\>"
 
 " Oracle Variables
-syn match   sqlVariable     contained "&\a\w\+"
+syn match   sqlVariable     "&\a\w\+"
+syn match   sqlVariable     ":\w\+"
+syn match   sqlVariable     "SQL%\w\+"
 
 " Strings
 syn region sqlString        start=+"+  skip=+\\\\\|\\"+  end=+"+ contains=sqlVariable
@@ -166,6 +172,9 @@ syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*\S\+\s\+\)\@<=\w\+\(\s*([
 syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*\S\+\s\+\)\@<=character\s\+varying\s*([^)]\+)" contains=sqlType,sqlTypeParens
 syn region  sqlTypeRegion   matchgroup=sqlParen start="\(create\s\+table\s\+[^(]\+\s\+\)\@<=(" end=")" contains=@sqlALL,sqlTypeMatch
 syn region  sqlTypeRegion   matchgroup=sqlParen start="\(create\s\+\(or\s\+replace\s\+\)\?procedure\s\+[^(]\+\s\+\)\@<=(" end=")" contains=@sqlALL,sqlTypeMatch
+
+" SQL Embedded in a statement.
+syn region  sqlquoteRegion  matchgroup=sqlParen start="\(execute\s\+immediate\s*\)\@<=('" end="')" contains=@sqlALL
 
 " Special Oracle Statements
 syn match   sqlStatement    "^\s*\(prompt\|spool\)\>" nextgroup=sqlAnyString
@@ -222,6 +231,7 @@ if version >= 508 || !exists("did_sql_syn_inits")
     HiLink sqlError         Error
     HiLink sqlFunction      Function
     HiLink sqlKeyword       Special
+    HiLink sqlConditional   Conditional
     HiLink sqlNumber        Number
     HiLink sqlOperator      Operator
     HiLink sqlParen         Comment
