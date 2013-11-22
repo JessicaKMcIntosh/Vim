@@ -1,7 +1,9 @@
 " Vim syntax file
 " Language:         screen(1) configuration file
-" Maintainer:       Nikolai Weibull <now@bitwi.se>
-" Latest Revision:  2010-01-03
+" Maintainer:       Jessica K McIntosh AT gmail DOT com
+" Last Changed:     Fri Nov 22 05:08 AM 2013 EST
+" Description:
+" A copy of the default screen.vim syntax file with personal aditions.
 
 if exists("b:current_syntax")
   finish
