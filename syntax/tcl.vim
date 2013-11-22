@@ -1,9 +1,9 @@
 " Vim syntax file for Tcl language
 " Language:     Tcl (NO Tk)
-" Maintained:   Lorance Stinson <Lorance Stinson AT gmail DOT com>
-" Last Change:  Wed, Sep 21, 2011
+" Maintained:   Jessica K McIntosh AT gmail DOT com
+" Last Changed: Fri Nov 22 05:13 AM 2013 EST
 " Filenames:    *.tcl
-" GitHub Home:  https://github.com/LStinson/Vim
+" GitHub Home:  https://github.com/JessicaKMcIntosh/Vim
 "
 " Based on the Tcl.vim script by SM Smithfield.
 " See vim.org for the original.
@@ -136,7 +136,8 @@ syn region  tclBrackets     contained extend keepend matchgroup=tclBracketsHighl
 syn region  tclBraces       contained extend keepend matchgroup=tclBracesHighlight start=+\(\\\)\@<!{+  end=+}+ skip=+$\|\(\\\)\@<!\\}+ contains=@tclCommandClstr,tclComment
 syn region  tclFoldBraces   contained extend keepend fold matchgroup=tclBracesHighlight start=+\(\\\)\@<!{+ end=+}+ skip=+$\|\(\\\)\@<!\\}+ contains=@tclCommandClstr
 syn match   tclSemiColon    contained ";\s*" skipwhite nextgroup=@tclCommandClstr
-syn region  tclComment      contained extend keepend start=+^\s*\#+ms=e-1 start=+\([;{]\s*\)\@<=\#+ end="\\\s\+$\|$" skip=+\\$+ contains=tclTodo,@tclLContinue,@Spell
+syn region  tclComment      contained extend keepend start=+^\s*\#+ms=e-1 start=+\([;{]\s*\)\@<=\#+ end="\\\s\+$\|$" skip=+\\$+ contains=tclTodo,tclCommentTitle,@tclLContinue,@Spell
+syn match   tclCommentTitle contained "\(#\s*\)\@<=\u[[:alnum:][:space:]]\+:"
 syn match   tclNamespace    "::\([^: ]\+::\)*"
 syn match   tclEndOpts      contained "--"
 
@@ -461,6 +462,7 @@ HiLink tclNumber         Number
 HiLink tclComment        Comment
 HiLink tclIfComment      Comment
 HiLink tclIfCommentStart Comment
+HiLink tclCommentTitle   PreProc
 HiLink tclSpecial        Special
 HiLink tclTodo           Todo
 HiLink tclExpand         Underlined
