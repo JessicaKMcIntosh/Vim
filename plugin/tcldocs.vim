@@ -1,7 +1,7 @@
 " =============================================================================
-" File:         rcldocs.vim (global plugin)
-" Last Changed: Fri, Jan 20, 2012
-" Maintainer:   Lorance Stinson AT Gmail...
+" File:         tcldocs.vim (global plugin)
+" Last Changed: Fri Nov 22 05:02 AM 2013 EST
+" Maintainer:   Jessica K McIntosh AT gmail DOT com
 " License:      Vim License
 " =============================================================================
 

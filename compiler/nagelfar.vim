@@ -1,9 +1,9 @@
 " Vim compiler file
 " Compiler:	tcl (Uses Nagelfar to check Syntax)
-" Maintainer:	Lorance Stinson AT Gmail...
-" Last Change:	2011-09-13
+" Maintainer:	Jessica K McIntosh AT gmail DOT com
+" Last Changed: Fri Nov 22 05:03 AM 2013 EST
 
-" **** XXX This now lives at https://github.com/LStinson/Nagelfar-Vim XXX ****
+" **** XXX This now lives at https://github.com/JessicaKMcIntosh/Nagelfar-Vim XXX ****
 
 " Nagelfar can be downloaded from <http://nagelfar.berlios.de/>
 " By default executes 'nagelfar.tcl'.

@@ -1,6 +1,6 @@
 " Vim Compiler File
 " Compiler: perlcritic
-" Maintainer: LoranceStinson@gmail.com
+" Maintainer: Jessica K McIntosh AT gmail DOT com
 " Original Author: Scott Peshak <speshak@gmail.com>
 
 " Description:

@@ -1,7 +1,7 @@
 " Vim indent file
 " Language:     AWK
 " From:         Perl indent file.
-" Author:       Lorance Stinson @ GMAIL...
+" Author:       Jessica K McIntosh AT gmail DOT com
 "
 " The default AWK indention file was overly complex and simply didn't work. So
 " I adapted the Perl indention file for AWK.

@@ -1,14 +1,14 @@
 " Tcl Tool Tooltip/Balloon Plugin
 " vim:foldmethod=marker
 " File:         tcl_tooltip.vim
-" Last Changed: 2011-09-07
-" Maintainer:   Lorance Stinson @ Gmail ...
+" Last Changed: Fri Nov 22 05:02 AM 2013 EST
+" Maintainer:   Jessica K McIntosh AT gmail DOT com
 " Version:      0.1
 " License:      Public Domain
 "
 " Install:       in ~/.vim/plugin or ~/vimfiles/plugin
 
-" **** XXX This now lives at https://github.com/LStinson/TagmaTips XXX ****
+" **** XXX This now lives at https://github.com/JessicaKMcIntosh/TagmaTips XXX ****
 
 " Description:
 " Displays a tooltip when the cursor hovers over a TCL command or variable.

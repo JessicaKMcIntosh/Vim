@@ -1,6 +1,5 @@
 " Script:           emacskeys.vim
-" Author:           LoranceStinson@gmail.com
-" Homepage:         http://ciaranm.org/tag/securemodelines
+" Author:           Jessica K McIntosh AT gmail DOT com
 " Requires:         Vim 7
 " License:          Public Domain
 " Purpose:          Emacs like keys for insert mode.
