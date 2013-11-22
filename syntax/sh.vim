@@ -1,12 +1,9 @@
 " Vim syntax file
 " Language:		shell (sh) Korn shell (ksh) bash (sh)
-" Maintainer:		Dr. Charles E. Campbell, Jr.  <NdrOchipS@PcampbellAfamily.Mbiz>
-" Previous Maintainer:	Lennart Schultz <Lennart.Schultz@ecmwf.int>
-" Last Change:		Aug 04, 2010
-" Version:		114
-" URL:		http://mysite.verizon.net/astronaut/vim/index.html#vimlinks_syntax
-" For options and settings, please use:      :help ft-sh-syntax
-" This file includes many ideas from ?ric Brunet (eric.brunet@ens.fr)
+" Maintainer:		Jessica K McIntosh AT gmail DOT com
+" Last Changed:                 Fri Nov 22 05:11 AM 2013 EST
+" Description:
+" A copy of the default sh.vim syntax file with personal aditions.
 
 " For version 5.x: Clear all syntax items {{{1
 " For version 6.x: Quit when a syntax file was already loaded
@@ -284,8 +281,9 @@ syn match   shMoreSpecial	"\%(\\\\\)*\\[\\"'`$()#]" nextgroup=shMoreSpecial cont
 
 " Comments: {{{1
 "==========
-syn cluster	shCommentGroup	contains=shTodo,@Spell
+syn cluster	shCommentGroup	contains=shTodo,shCommentTitle,@Spell
 syn keyword	shTodo	contained		COMBAK FIXME TODO XXX
+syn match	shCommentTitle	contained	"\(#\s*\)\@<=\u[[:alnum:][:space:]]\+:"
 syn match	shComment		"^\s*\zs#.*$"	contains=@shCommentGroup
 syn match	shComment		"\s\zs#.*$"	contains=@shCommentGroup
 syn match	shQuickComment	contained	"#.*$"
@@ -591,6 +589,7 @@ hi def link shCharClass		Identifier
 hi def link shSnglCase		Statement
 hi def link shCommandSub		Special
 hi def link shComment		Comment
+hi def link shCommentTitle		PreProc
 hi def link shConditional		Conditional
 hi def link shCtrlSeq		Special
 hi def link shExprRegion		Delimiter
