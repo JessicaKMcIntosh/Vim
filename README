@@ -2,10 +2,10 @@ Vim scripts I have written or modified.
 These are under either the original copyright or the public domain.
 
 Files:
-    color/lorance.vim   - Custom color format. Close to old Vim colors.
+    color/jessica.vim   - Custom color format. Close to old Vim colors.
 
     compiler/nagelfar.vim
-**** This now lives at https://github.com/LStinson/Nagelfar-Vim ****
+**** This now lives at https://github.com/JessicaKMcIntosh/Nagelfar-Vim ****
                         - Use Nagelfar as a compiler command for checking Tcl
                           syntax.  Works best if g:nagelfar_file is set to the
                           full path of the nagelfar.tcl file. Works correctly
@@ -51,7 +51,7 @@ Files:
                           allow setting foldmarker or foldlevel.
 
     plugin/tcl_tooltips.vim
-**** This now lives at https://github.com/LStinson/TagmaTips ****
+**** This now lives at https://github.com/JessicaKMcIntosh/TagmaTips ****
                         - Provides Tool Tips for Tcl code. Contains lists for
                           Tcl commands and variables. Will also scan the
                           current buffer for procedures adding the definition
