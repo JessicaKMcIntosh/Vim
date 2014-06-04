@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     SQL with SQLite and other additions.
 " Maintainer:   Jessica K McIntosh AT gmail DOT com
-" Last Changed: Fri Nov 22 05:03 AM 2013 EST
+" Last Changed: Thu Jan 23 06:00 PM 2014 EST
 
 " More complete SQL matching with error reporting.
 " Only matches types inside 'CREATE TABLE ();'.
@@ -22,7 +22,7 @@ syn case ignore
 syn cluster sqlALL          contains=TOP
 
 " Various error conditions.
-syn match   sqlError        "\<\w\+("           " Not a known function.
+"syn match   sqlError        "\<\w\+("           " Not a known function.
 syn match   sqlError        ")"                 " Lonely closing paren.
 syn match   sqlError        ",\(\_\s*[;)]\)\@=" " Comma before a paren or semicolon.
 syn match   sqlError        " $"                " Space at the end of a line.
@@ -85,6 +85,9 @@ syn match   sqlOperator     "||\|:="
 " Conditionals
 syn match   sqlConditional  "=\|<\|>\|+\|-"
 
+" Unknown functions.
+syn match   sqlUnknownFunc  "\<\w\+(\@="
+
 " Functions - Only valid with a '(' after them.
 syn match   sqlFunction     "\<\(abs\|acos\|asin\|atan2\?\|avg\|cardinality\)(\@="
 syn match   sqlFunction     "\<\(cast\|changes\|char_length\|character_length\)(\@="
@@ -100,6 +103,9 @@ syn match   sqlFunction     "\<\(upper\|variance\)(\@="
 
 " Oracle DBMS functions.
 syn match   sqlFunction     "\<dbms_\w\+\.\w\+(\@="
+
+" Oracle Exception Functions.
+syn match   sqlFunction     "\<raise_application_error(\@="
 
 " SQLite Functions
 syn match   sqlFunction     "\<\(last_insert_rowid\|load_extension\|randomblob\)(\@="
@@ -171,7 +177,7 @@ syn region  sqlTypeParens   contained matchgroup=sqlType start="(" end=")" conta
 syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*\S\+\s\+\)\@<=\w\+\(\s*([^)]\+)\)\?" contains=sqlType,sqlTypeParens
 syn match   sqlTypeMatch    contained "\(\(^\|[,(]\)\s*\S\+\s\+\)\@<=character\s\+varying\s*([^)]\+)" contains=sqlType,sqlTypeParens
 syn region  sqlTypeRegion   matchgroup=sqlParen start="\(create\s\+table\s\+[^(]\+\s\+\)\@<=(" end=")" contains=@sqlALL,sqlTypeMatch
-syn region  sqlTypeRegion   matchgroup=sqlParen start="\(create\s\+\(or\s\+replace\s\+\)\?procedure\s\+[^(]\+\s\+\)\@<=(" end=")" contains=@sqlALL,sqlTypeMatch
+syn region  sqlTypeRegion   matchgroup=sqlParen start="\(create\s\+\(or\s\+replace\s\+\)\?procedure\s\+[^(]\+\s*\)\@<=(" end=")" contains=@sqlALL,sqlTypeMatch
 
 " SQL Embedded in a statement.
 syn region  sqlquoteRegion  matchgroup=sqlParen start="\(execute\s\+immediate\s*\)\@<=('" end="')" contains=@sqlALL
@@ -230,6 +236,7 @@ if version >= 508 || !exists("did_sql_syn_inits")
     HiLink sqlComment       Comment
     HiLink sqlError         Error
     HiLink sqlFunction      Function
+    HiLink sqlUnknownFunc   Exception
     HiLink sqlKeyword       Special
     HiLink sqlConditional   Conditional
     HiLink sqlNumber        Number
